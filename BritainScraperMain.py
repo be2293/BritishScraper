@@ -1,19 +1,10 @@
 import BritainScraperFunctions as scraper
 import pandas as pd 
 
-#instantiates a list to put the data in
-Df_List = []
 
 #picks the list of subjects to scrape
-Subject_List = ["Agriculture", "Engineering", "Electricity"]
+Subject_List = ["Technology","Engineering", "Construction", "Civil engineering", "Architecture", "Mechanical engineering", "Nuclear engineering", "Electrical engineering", "Electronic engineering", "Maritime engineering", "Naval engineering", "Metal engineering","Mining engineering", "Chemical technology", "Manufacturing","Domestic arts", "Domestic sciences", "Industry","Commerce","Agriculture","Horticulture","Silk industry","Animal husbandry","Forestry","Fishing","Commerce","Transportation","Traffic","Communications"]
 
-for subject in Subject_List:
-    Df_List.append(scraper.Search_Subject(subject))
+df = scraper.Main_Function(Subject_List)
 
-#gets both a raw and duplicates-removed frame 
-FullDataFrame = pd.concat(Df_List)
-DuplicatesRemovedDataFrame = FullDataFrame.drop_duplicates(subset=['Title','Year'], keep = 'first')
-
-#saves frames to your computer 
-FullDataFrame.to_csv("FullBritishData.csv")
-DuplicatesRemovedDataFrame.to_csv("CleanBritishData.csv")
+df.to_csv("FullBritishSearch.csv")
